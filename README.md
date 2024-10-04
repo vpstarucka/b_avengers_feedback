@@ -2,6 +2,8 @@
 
 Esse aplicativo funciona diretamente no Slack, serve para as referências do bridge construirem um feedback para qualquer pessoa com o auxílio da inteligência artifical.
 
+Com base em: https://github.com/slack-samples/bolt-python-ai-chatbot
+
 ## Instalação
 
 #### Pré-requisitos
