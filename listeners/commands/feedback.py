@@ -4,36 +4,6 @@ from ai.providers import get_provider_response
 from slack_sdk import WebClient
 from ..model.types import getTipoFeedbackTextByEnum, TipoFeedback
 
-# Salvar usuário para mensagem final
-# Adicionar palavras chave para tipo de personalidade
-# Adicionar palavras chave para tipo de comunicação
-
-"""/novofeedback @arthurwinck proativo nao-violenta "Gostaria de falar para ele que ele coda mal" """
-"""/feedback @user comportamento"""
-
-# > Crie um feedback para uma pessoa que tem as seguintes caracts: "${input}".
-# ${feedback}
-
-def get_valores():
-    return     """Na hora de escrever o feedback, leve em consideração também que os seguintes valores seriam esperados pela pessoa que está recebendo,
-    pois são os valores da empresa em que trabalhamos:
-
-    Fazer bem feito, inclusive o café
-    Buscamos nos desafiar e dedicar em todas as atividades, até mesmo no cafezinho do dia a dia.
-
-    Compartilhar dá mais XP
-    Estamos sempre compartilhando conhecimento. Acreditamos que assim todos saem ganhando.
-
-    Ser a diferença
-    Assim como nossas soluções, buscamos fazer a diferença onde estamos.
-
-    Conectar pessoas a momentos
-    Prezamos sempre pelo bem das pessoas, proporcionando momentos de qualidade.
-
-    Explorar novos mundos
-    Estamos sempre explorando e inovando para construir melhores soluções."""
-
-
 def parse_prompt(prompt: str) -> dict:
     split_prompt = prompt.split(" ")
 
