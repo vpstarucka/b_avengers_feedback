@@ -17,7 +17,7 @@ Também existe uma funcionalidade para avisar no canal geral em uma frequência 
 4. Revise a configuração e clique em Create
 5. Clique em Install to Workspace e Allow na tela que aparecer em seguida. Você será redirecionado para o painel de configuração do aplicativo.
 
-#### Environment Variables
+#### Variáveis de ambiente
 Antes de executar o aplicativo, será necessário armazenar algumas variáveis de ambiente.
 
 1. Abra a página de configuração do seu app, clique em **OAuth & Permissions** no menu à esquerda, e copie o Bot User OAuth Token. Armazene isso na sua variável de ambiente como `SLACK_BOT_TOKEN`.
@@ -60,7 +60,7 @@ python3 app.py
 
 Exemplo:
 ```
-usuario.nome proativo nao-violento "Gostaria de falar para ele que ele coda mal"
+usuario.nome nao-violento "Gostaria de falar para ele que ele coda mal"
 ```
 
 É possível resgatar o histórico de feedback de um usuário:
