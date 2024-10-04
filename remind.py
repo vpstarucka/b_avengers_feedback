@@ -1,35 +1,18 @@
 from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError#
+from slack_sdk.errors import SlackApiErrordef 
 
-
-def tarefa():
-    client = WebClient(token="token")# The channel ID or name where you want to send the message
-    client.reminders.add({text: 'clean up duty', time: 'now', recurence: 'monthly' team_id: 'C07NEDNL6T0'})
-  
-    # channel_id = "C07NEDNL6T0"# The bot name
-    # bot_name = "Bolty"# The message you want to send
-    # message = "Oi :D"
-    # try:
-    #     # Use the chat.postMessage method to send a message to the channel
-    #     response = client.chat_postMessage(channel=channel_id, text=message,username=bot_name)
-    #     print("Message sent successfully!")
-    # except SlackApiError as e:
-    #     # Error handling in case the message fails to send
-    #     print(f"Error sending message: {e}")
-
-# def tempo_para_proxima_execucao():
-#     """Calcula o tempo restante até a próxima execução agendada."""
-#     proxima_execucao = schedule.next_run()  # Obtém o horário da próxima execução
-#     agora = datetime.now()  # Horário atual
-#     segundos_restantes = (proxima_execucao - agora).total_seconds()
-#     return max(0, segundos_restantes)
-
-# def executar()
-#     # Agendando a tarefa para ser executada todo dia em um horário específico
-#     # schedule.every().day.at("15:30").do(tarefa)
-#     schedule.every(2).minutes.do(tarefa)
-#     while True:
-#         schedule.run_pending()
-#         sleep_time = tempo_para_proxima_execucao()
-#         print(f"Dormindo por {sleep_time} segundos até a próxima verificação...")
-#         time.sleep(sleep_time)  # Dorme até a próxima execução
+tarefa():
+    # Inicializa o cliente com o token do bot
+    client = WebClient(token="token")    
+    try:
+        # Adiciona um lembrete usando parâmetros nomeados, em vez de um dicionário
+        response = client.reminders_add(
+            text='Lembrete periódico',  # Texto do lembrete
+            time='now',  # Hora do lembrete (exemplo: 'now', 'in 10 minutes', timestamp etc.)
+            recurrence='monthly'
+            team_id='C07NEDNL6T0'  # ID do canal ou time (opcional, se aplicável)
+        )
+        print(f"Lembrete adicionado com sucesso: {response}")
+    except SlackApiError as e:
+        # Tratamento de erro caso o lembrete não seja adicionado corretamente
+        print(f"Erro ao adicionar lembrete: {e.response['error']}")
