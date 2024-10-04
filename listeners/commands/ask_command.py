@@ -8,8 +8,7 @@ Callback for handling the 'ask-bolty' command. It acknowledges the command, retr
 checks if the prompt is empty, and responds with either an error message or the provider's response.
 """
 
-
-def ask_callback(client: WebClient, ack: Ack, command, say: Say, logger: Logger, context: BoltContext):
+def ask_callback(client: WebClient, ack: Ack, command, say: Say, logger: Logger, context: BoltContext):    
     try:
         ack()
         user_id = context["user_id"]
