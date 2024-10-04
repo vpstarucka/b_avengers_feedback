@@ -16,21 +16,17 @@ def parse_prompt(prompt: str) -> dict:
 
     try:
         user_to_receive = split_prompt[0]
-        person_type = split_prompt[1]
-        feedback_type = split_prompt[2]
-
-        # feedback_type = getTipoFeedbackTextByEnum()
-
-        behavior = split_prompt[3]
+        feedback_type = split_prompt[1]
+        behavior = split_prompt[2]
     except Exception as e:
         raise Exception("Mensagem mal formatada")
 
-    return {"usuario": user_to_receive, "tipoPessoa": person_type, "tipoFeedback": feedback_type, "comportamento": behavior}
+    return {"usuario": user_to_receive, "tipoFeedback": feedback_type, "comportamento": behavior}
 
 def add_parameters(parsed_prompt: dict) -> str:
   # Adicionar na respoista
   template_prompt = f"""
-    Considerando um profissional de uma empresa de TI, me auxilie a dar um feedback para um colega a 
+    Considerando um profissional de uma empresa de TI, construa uma mensagem para dar de feedback para um colega a 
     partir do seguinte comportamento que observei por parte dele (lembre-se que esse é o ponto fundamental desse texto): {parsed_prompt["comportamento"]}.
     Use o primeiro nome desse username: {parsed_prompt["usuario"]}
     para iniciar a mensagem de feedback. Construa o feedback seguindo esse modelo de feedback existente (SCI, CNV ou espontâneo): {parsed_prompt["tipoFeedback"]}.
