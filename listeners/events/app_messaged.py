@@ -17,7 +17,7 @@ def parse_prompt(prompt: str) -> dict:
     try:
         user_to_receive = split_prompt[0]
         feedback_type = split_prompt[1]
-        behavior = split_prompt[2:].join("")
+        behavior = ''.join(split_prompt[2:])
     except Exception as e:
         raise Exception("Mensagem mal formatada")
 
