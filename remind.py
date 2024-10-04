@@ -9,7 +9,7 @@ tarefa():
         response = client.reminders_add(
             text='Lembrete periódico',  # Texto do lembrete
             time='now',  # Hora do lembrete (exemplo: 'now', 'in 10 minutes', timestamp etc.)
-            recurrence='monthly'
+            recurrence='monthly',
             team_id='C07NEDNL6T0'  # ID do canal ou time (opcional, se aplicável)
         )
         print(f"Lembrete adicionado com sucesso: {response}")
