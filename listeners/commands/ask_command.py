@@ -9,28 +9,34 @@ Callback for handling the 'ask-bolty' command. It acknowledges the command, retr
 checks if the prompt is empty, and responds with either an error message or the provider's response.
 """
 
-def response_by_name(prompt):
-    lines = prompt.splitlines()
+
+    # result = client.conversations_history(channel=channel_id)
+    # conversation_history = result["messages"]
+
+    # for message in conversation_history:
+    #     if  in message["text"]:
+    #         print(f'Found "ball" in message: {message["text"]}')
+    #         break
+
+
+    #     # Print results
+    # logger.info("{} messages found in {}".format(len(conversation_history), channel_id))
+    # print("{} messages found in {}".format(conversation_history, channel_id))
     
-    last_line = lines[-1]
+
+
+def last_feedback_by_name(conversation_history, prompt):
+    last_feedback = ""
+    match = re.search(r'@\w+', prompt)
+    if match:
+        username = match.group(0)  # Retrieve the matched username
+        for message in conversation_history:
+            if username in message["text"]:
+                last_feedback = message["text"]
+                print(f'Found message: {last_feedback}')
+                break
     
-    # Extrai o nome após o '@' e antes do primeiro espaço
-    # Formato: '@joao proativo nao-violenta "Gostaria de falar para ele que ele coda fofo"'
-    name_match = re.match(r"@(\w+)", last_line)
-    
-    if name_match:
-        name = name_match.group(1)
-        
-        feedback_pattern = fr"Feedback de {name.capitalize()}"
-        
-        filtered_feedback = []
-        for line in lines[:-1]:
-            if re.match(feedback_pattern, line):
-                filtered_feedback.append(line)
-        
-        return "\n".join(filtered_feedback)
-    else:
-        return "Nome não encontrado."
+    return last_feedback
 
 
 def ask_callback(client: WebClient, ack: Ack, command, say: Say, logger: Logger, context: BoltContext):

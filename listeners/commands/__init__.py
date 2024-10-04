@@ -1,8 +1,5 @@
 from slack_bolt import App
-from .ask_command import ask_callback
-from .feedback import novofeedback
-
+from .ultimo_feedback import ultimo_feedback
 
 def register(app: App):
-    # app.command("/ask-bolty")(ask_callback)
-    app.command("/novofeedback")(novofeedback)
+    app.command("/ultimo-feedback")(ultimo_feedback)
