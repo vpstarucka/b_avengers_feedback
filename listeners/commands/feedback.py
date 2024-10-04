@@ -33,11 +33,15 @@ def parse_prompt(prompt: str) -> dict:
 def add_parameters(parsed_prompt: dict) -> str:
   # Adicionar na respoista
   template_prompt = f"""
-    Crie um feedback a partir desse comportamento (lembre-se que esse é o ponto fundamental desse texto): {parsed_prompt["comportamento"]}. Use o primeiro nome desse username {parsed_prompt["usuario"]}
+
+    Considerando um profissional de um profissional de uma empresa de TI, me auxilie a dar um feedback para um colega a 
+    partir do seguinte comportamento que observei por parte dele (lembre-se que esse é o ponto fundamental desse texto): {parsed_prompt["comportamento"]}.
+    Use o primeiro nome desse username: {parsed_prompt["usuario"]}
     para iniciar a mensagem de feedback. Leve em consideração essas características da pessoa que irá receber o feedback
     {parsed_prompt["tipoPessoa"]} e construa o feedback seguindo esse tipo: {parsed_prompt["tipoFeedback"]}
 
-    Na hora de escrever o feedback, leve em consideração os seguintes valores são esperados pela pessoa que está recebendo:
+    Na hora de escrever o feedback, leve em consideração também que os seguintes valores seriam esperados pela pessoa que está recebendo,
+    pois são os valores da empresa em que trabalhamos:
 
     Fazer bem feito, inclusive o café
     Buscamos nos desafiar e dedicar em todas as atividades, até mesmo no cafezinho do dia a dia.
