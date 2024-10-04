@@ -2,6 +2,7 @@ from slack_bolt import Ack, Say, BoltContext
 from logging import Logger
 from ai.providers import get_provider_response
 from slack_sdk import WebClient
+from ..model.types import getTipoFeedbackTextByEnum, TipoFeedback
 
 # Salvar usuário para mensagem final
 # Adicionar palavras chave para tipo de personalidade
@@ -20,6 +21,9 @@ def parse_prompt(prompt: str) -> dict:
         user_to_receive = split_prompt[0]
         person_type = split_prompt[1]
         feedback_type = split_prompt[2]
+
+        # feedback_type = getTipoFeedbackTextByEnum()
+
         behavior = split_prompt[3]
     except Exception as e:
         raise Exception("Mensagem mal formatada")
@@ -31,7 +35,7 @@ def add_parameters(parsed_prompt: dict) -> str:
   template_prompt = f"""
     Crie um feedback a partir desse comportamento. Use o primeiro nome desse username {parsed_prompt["usuario"]}
     para iniciar a mensagem de feedback. Leve em consideração essas características da pessoa que irá receber o feedback
-    {parsed_prompt["tipoPessoa"]} e construa o feedback seguindo esse tipo {parsed_prompt["tipoFeedback"]}
+    {parsed_prompt["tipoPessoa"]} e construa o feedback seguindo esse tipo: {parsed_prompt["tipoFeedback"]}
 
     Leve em consideração os seguintes valores:
 
