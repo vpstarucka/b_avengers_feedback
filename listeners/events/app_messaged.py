@@ -28,7 +28,7 @@ def add_parameters(parsed_prompt: dict) -> str:
   template_prompt = f"""
     Considerando um profissional de uma empresa de TI, construa uma mensagem para dar de feedback para um colega a 
     partir do seguinte comportamento que observei por parte dele (lembre-se que esse é o ponto fundamental desse texto): {parsed_prompt["comportamento"]}.
-    Use o primeiro nome desse username: {parsed_prompt["usuario"]}
+    Se refira a essa pessoa como: {parsed_prompt["usuario"]}
     para iniciar a mensagem de feedback. Construa o feedback seguindo esse modelo de feedback existente (SCI, CNV ou espontâneo): {parsed_prompt["tipoFeedback"]}.
     No final da mensagem adicione "Feedback para {parsed_prompt["usuario"]}"
     Me forneça apenas o feedback da forma exata como devo encaminhar ao colega.
