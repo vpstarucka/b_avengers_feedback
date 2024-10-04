@@ -11,6 +11,25 @@ Handles the event when a direct message is sent to the bot, retrieves the conver
 and generates an AI response.
 """
 
+def get_valores():
+    return """Na hora de escrever o feedback, leve em consideração também que os seguintes valores seriam esperados pela pessoa que está recebendo,
+    pois são os valores da empresa em que trabalhamos:
+
+    Fazer bem feito, inclusive o café
+    Buscamos nos desafiar e dedicar em todas as atividades, até mesmo no cafezinho do dia a dia.
+
+    Compartilhar dá mais XP
+    Estamos sempre compartilhando conhecimento. Acreditamos que assim todos saem ganhando.
+
+    Ser a diferença
+    Assim como nossas soluções, buscamos fazer a diferença onde estamos.
+
+    Conectar pessoas a momentos
+    Prezamos sempre pelo bem das pessoas, proporcionando momentos de qualidade.
+
+    Explorar novos mundos
+    Estamos sempre explorando e inovando para construir melhores soluções."""
+
 def parse_prompt(prompt: str) -> dict:
     split_prompt = prompt.split(" ")
 
@@ -41,8 +60,6 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
     user_id = event.get("user")
     text = event.get("text")
 
-    print(text)
-
     try:
         if event.get("channel_type") == "im":
             conversation_context = ""
@@ -53,7 +70,6 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
             
             parsed_prompt = parse_prompt(text)
             final_text = add_parameters(parsed_prompt)
-            print(final_text)
             waiting_message = say(text=DEFAULT_LOADING_TEXT, thread_ts=thread_ts)
             response = get_provider_response(user_id, final_text, conversation_context, DM_SYSTEM_CONTENT)
             client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=response)

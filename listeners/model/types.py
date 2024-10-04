@@ -5,12 +5,6 @@ class TipoFeedback(Enum):
     CNV = 2,
     ESPONTANEO = 3
 
-class TipoPessoa(Enum):
-    ANALITICA = 1,
-    SOCIAIS = 2,
-    PROATIVAS = 3
-    INOVADORAS = 4
-
 def getTipoFeedbackTextByEnum(tipoFeedback: TipoFeedback) -> str:
     if tipoFeedback == TipoFeedback.SCI:
         return """
