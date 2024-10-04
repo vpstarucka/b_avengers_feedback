@@ -2,8 +2,6 @@
 
 Esse aplicativo funciona diretamente no Slack, serve para as referências do bridge construirem um feedback para qualquer pessoa com o auxílio da inteligência artifical.
 
-Também existe uma funcionalidade para avisar no canal geral em uma frequência configurável, que deve ser realizada uma rodada de feedback.
-
 ## Instalação
 
 #### Pré-requisitos
