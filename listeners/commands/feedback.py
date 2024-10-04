@@ -52,7 +52,7 @@ def add_parameters(parsed_prompt: dict) -> str:
 
     O comportamento no qual o feedback vai ser criado é esse: {parsed_prompt["comportamento"]}
     """
-  return 
+  return template_prompt
 
 def novofeedback(client: WebClient, ack: Ack, command, say: Say, logger: Logger, context: BoltContext):    
     try:
