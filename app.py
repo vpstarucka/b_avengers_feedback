@@ -16,6 +16,5 @@ register_listeners(app)
 
 # Start Bolt app
 if __name__ == "__main__":
+    tarefa()
     SocketModeHandler(app, os.environ.get("SLACK_APP_TOKEN")).start()
-
-executar()
