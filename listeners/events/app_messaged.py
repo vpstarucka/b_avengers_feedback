@@ -40,6 +40,8 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
     user_id = event.get("user")
     text = event.get("text")
 
+    print(text)
+
     try:
         if event.get("channel_type") == "im":
             conversation_context = ""
@@ -49,6 +51,7 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
                 conversation_context = parse_conversation(conversation[:-1])
             
             parsed_prompt = parse_prompt(text)
+            print(parsed_prompt)
             waiting_message = say(text=DEFAULT_LOADING_TEXT, thread_ts=thread_ts)
             response = get_provider_response(user_id, add_parameters(parsed_prompt), conversation_context, DM_SYSTEM_CONTENT)
             client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=response)
