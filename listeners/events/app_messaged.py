@@ -17,7 +17,7 @@ def parse_prompt(prompt: str) -> dict:
     try:
         user_to_receive = split_prompt[0]
         feedback_type = split_prompt[1]
-        behavior = split_prompt[2]
+        behavior = split_prompt[2:].join("")
     except Exception as e:
         raise Exception("Mensagem mal formatada")
 
@@ -31,6 +31,7 @@ def add_parameters(parsed_prompt: dict) -> str:
     Use o primeiro nome desse username: {parsed_prompt["usuario"]}
     para iniciar a mensagem de feedback. Construa o feedback seguindo esse modelo de feedback existente (SCI, CNV ou espontâneo): {parsed_prompt["tipoFeedback"]}.
     No final da mensagem adicione "Feedback para {parsed_prompt["usuario"]}"
+    Me forneça apenas o feedback da forma exata como devo encaminhar ao colega.
     """
   return template_prompt
 
@@ -51,9 +52,10 @@ def app_messaged_callback(client: WebClient, event: dict, logger: Logger, say: S
                 conversation_context = parse_conversation(conversation[:-1])
             
             parsed_prompt = parse_prompt(text)
-            print(parsed_prompt)
+            final_text = add_parameters(parsed_prompt)
+            print(final_text)
             waiting_message = say(text=DEFAULT_LOADING_TEXT, thread_ts=thread_ts)
-            response = get_provider_response(user_id, add_parameters(parsed_prompt), conversation_context, DM_SYSTEM_CONTENT)
+            response = get_provider_response(user_id, final_text, conversation_context, DM_SYSTEM_CONTENT)
             client.chat_update(channel=channel_id, ts=waiting_message["ts"], text=response)
     except Exception as e:
         logger.error(e)
